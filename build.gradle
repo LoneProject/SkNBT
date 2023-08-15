@@ -1,0 +1,26 @@
+plugins {
+    id "java"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+tasks.jar {
+    archiveFileName.set("SkNBT.jar")
+}
+
+group = "org.lone64.sknbt"
+
+repositories {
+    maven { url = 'https://repo.skriptlang.org/releases' }
+    maven { url = "https://repo.loneproject.org/repository/maven-public/"; allowInsecureProtocol = true }
+}
+
+dependencies {
+    compileOnly "org.spigotmc:spigot-api:1.12.2-R0.1"
+    compileOnly "org.projectlombok:lombok:1.18.26"
+    annotationProcessor "org.projectlombok:lombok:1.18.26"
+    implementation "com.github.SkriptLang:Skript:2.7.0-beta3"
+    implementation "org.eclipse.jdt:org.eclipse.jdt.annotation:2.2.600"
+}
