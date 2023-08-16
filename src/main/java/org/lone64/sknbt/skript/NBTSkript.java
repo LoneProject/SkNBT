@@ -6,11 +6,9 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.eclipse.jdt.annotation.Nullable;
-import org.lone64.sknbt.util.item.ItemUtil;
 import org.lone64.sknbt.util.nms.ItemNmsUtil;
 
 public class NBTSkript extends SimpleExpression<ItemStack> {
@@ -36,10 +34,7 @@ public class NBTSkript extends SimpleExpression<ItemStack> {
 
     @Override
     protected @Nullable ItemStack[] get(Event e) {
-        ItemUtil item = new ItemUtil(this.item.getSingle(e));
-        item.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&bItems with NBT added"));
-
-        ItemNmsUtil itemNms = new ItemNmsUtil(item.getItemStack());
+        ItemNmsUtil itemNms = new ItemNmsUtil(this.item.getSingle(e));
         if (itemNms.asTag(this.name.getSingle(e)) == null)
             itemNms.asTag(this.name.getSingle(e), this.value.getSingle(e));
         return new ItemStack[]{itemNms.asItemStack()};

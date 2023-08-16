@@ -2,7 +2,7 @@ name: SkNBT
 main: org.lone64.sknbt.SkNBT
 author: lone64
 version: 1.0.0
-api-version: '1.13'
+api-version: '1.19'
 description: 스크립트 애드온 플러그인
 depend:
   - Skript
