@@ -77,4 +77,41 @@ command /isnbt <string>:
 				message "&aNBT가 추가되어 있습니다!" to player
 				stop
 			message "&cNBT가 추가되어 있지 않습니다!" to player
+
+# List 부분
+command /addlistnbt <string>:
+	trigger:
+		if arg 1 is not set:
+			message "&c값을 입력하여 주세요!" to player
+			stop
+		if player's tool is air:
+			message "&cNBT를 추가할 아이템을 들고 있어주세요!" to player
+			stop
+		else if nbt list named arg-1 of player's tool is true:
+			message "&c이미 추가된 NBT입니다!" to player
+			stop
+		add "테스트" to {_list::*}
+		add "테스트1" to {_list::*}
+		add "테스트2" to {_list::*}
+		add "테스트3" to {_list::*}
+		add "테스트4" to {_list::*}
+		set {_item} to nbt list named arg-1 in "%{_list::*}%" of player's tool
+		set player's tool to {_item}
+		message "&a성공적으로 NBT를 추가하셨습니다!" to player
+
+command /listnbtload <string>:
+	trigger:
+		if arg 1 is not set:
+			message "&c값을 입력하여 주세요!" to player
+		else:
+			if player's tool is air:
+				message "&cNBT를 추가할 아이템을 들고 있어주세요!" to player
+				stop
+			set {_amount::*} to split load nbt list named arg-1 of player's tool by ", "
+			if {_amount::*} is not set:
+				message "&c저장된 값이 존재하지 않습니다!" to player
+				stop
+			message "&f이름: %arg-1%" to player
+			loop {_amount::*}:
+				message "%loop-value%" to player
 ```
