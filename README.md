@@ -87,7 +87,7 @@ command /addlistnbt <string>:
 		if player's tool is air:
 			message "&cNBT를 추가할 아이템을 들고 있어주세요!" to player
 			stop
-		else if nbt list named arg-1 of player's tool is true:
+		else if nbt named arg-1 of player's tool is true:
 			message "&c이미 추가된 NBT입니다!" to player
 			stop
 		add "테스트" to {_list::*}
